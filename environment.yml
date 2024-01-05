@@ -1,0 +1,15 @@
+name: diet
+channels:
+  - conda-forge
+  - defaults
+  - gurobi
+dependencies:
+  - conda-build
+  - coverage
+  - flask
+  - gurobi=10
+  - jupyter
+  - pip
+  - python
+  - pip:
+    - ticdat

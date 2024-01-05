@@ -1,0 +1,31 @@
+package:
+  name: diet
+  version: "0.0"
+
+source:
+  git_rev: 0.0
+  git_url: https://github.com/spkelle2/diet.git
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+    - gurobi=10
+    - flask
+    - pip
+
+  pip:
+    - ticdat
+
+test:
+  imports:
+    - diet
+
+about:
+  home: https://github.com/spkelle2/diet
+  license: GNU GENERAL PUBLIC LICENSE Version 3
+  license family: GPL-3.0-or-later
+  summary: Demo on how to develop and build python data science projects for deployment in production environments
