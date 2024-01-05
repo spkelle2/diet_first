@@ -1,3 +1,4 @@
+import os
 import unittest
 
 from diet.diet import Diet
@@ -8,8 +9,13 @@ class TestDiet(unittest.TestCase):
 
     def setUp(self) -> None:
         # keep a copy of the input data handy for each test
-        self.dirty_dat = input_schema.csv.create_tic_dat("diet_dirty_sample_data")
-        self.dat = input_schema.csv.create_tic_dat("diet_sample_data")
+        cwd = os.path.dirname(__file__)
+        self.dirty_dat = input_schema.csv.create_tic_dat(
+            os.path.join(cwd, "diet_dirty_sample_data")
+        )
+        self.dat = input_schema.csv.create_tic_dat(
+            os.path.join(cwd, "diet_sample_data")
+        )
 
     def test_init(self):
         # check that init has model and variables if no errors

@@ -13,7 +13,7 @@ requirements:
 
   run:
     - python
-    - gurobi=10
+    - gurobi::gurobi=10
     - flask
     - pip
 
@@ -21,8 +21,8 @@ requirements:
     - ticdat
 
 test:
-  imports:
-    - diet
+  commands:
+    - python -m unittest discover
 
 about:
   home: https://github.com/spkelle2/diet
