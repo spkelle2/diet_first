@@ -22,4 +22,4 @@ RUN cd opt/ && \
 ENV FLASK_APP=/opt/diet/app/app.py
 
 # run diet app
-ENTRYPOINT . /opt/miniconda3/bin/activate && conda activate diet && python -m flask run
+ENTRYPOINT . /opt/miniconda3/bin/activate && conda activate diet && python -m flask run --host=0.0.0.0
