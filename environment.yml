@@ -10,6 +10,7 @@ dependencies:
   - coverage
   - flask
   - grayskull
+  - gunicorn
   - gurobi=10
   - jupyter
   - python
