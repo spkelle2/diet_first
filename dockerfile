@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 # add wget
-RUN apt update && apt install wget git -y
+RUN apt update && apt install wget git nginx -y
 
 # set up miniconda
 ENV PATH="/opt/miniconda3/bin:${PATH}"
@@ -18,10 +18,16 @@ RUN cd opt/ && \
     cd diet && \
     git checkout dev && \
     conda env create -f environment.yml && \
+    . /opt/miniconda3/bin/activate && \
+    conda activate diet && \
     pip install -e .
 
+# set up nginx
+RUN cp /opt/diet/app/sites-available/app /etc/nginx/sites-available/app && \
+    ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled
+
 # run diet app with gunicorn as the server
-ENTRYPOINT . /opt/miniconda3/bin/activate && \
-    conda activate diet && \
-    cd /opt/diet/app/ && \
-    gunicorn -w 4 -b 0.0.0.0:8000 app:app
+#ENTRYPOINT . /opt/miniconda3/bin/activate && \
+#    conda activate diet && \
+#    cd /opt/diet/app/ && \
+#    gunicorn -w 4 app:app
