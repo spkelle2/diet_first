@@ -3,13 +3,14 @@ channels:
   - conda-forge
   - defaults
   - gurobi
+  - spkelle2
 dependencies:
+  - anaconda-client
   - conda-build
   - coverage
   - flask
+  - grayskull
   - gurobi=10
   - jupyter
-  - pip
   - python
-  - pip:
-    - ticdat
+  - ticdat

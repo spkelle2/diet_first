@@ -1,31 +1,43 @@
+# created the skeleton with "grayskull pypi dist/diet-1.0.0.tar.gz"
+# then manually edited the file to add the gurobi and ticdat dependencies
+
 package:
-  name: diet
-  version: "0.0"
+  name: "diet"
+  # todo: update version with each release
+  version: "1.0.0"
 
 source:
-  git_rev: 0.0
-  git_url: https://github.com/spkelle2/diet.git
+  # todo: update location of source distribution with each release
+  url: file:///Users/sean/Documents/school/phd/research/diet/dist/diet-1.0.0.tar.gz
+  # todo: replace sha256 with output of this command: openssl sha256 dist/diet_<version>.tar.gz | cut -d " " -f2
+  sha256: 3288f6b144f952c0ff4870ddbaa9cf4781445318b76f0699447d1c41615e23b4
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
 
 requirements:
-  build:
+  host:
     - python
-    - setuptools
-
+    - pip
   run:
     - python
     - gurobi::gurobi=10
-    - flask
-    - pip
-
-  pip:
-    - ticdat
+    - spkelle2::ticdat
 
 test:
+  imports:
+    - diet
   commands:
-    - python -m unittest discover
+    - pip check
+  requires:
+    - pip
 
 about:
-  home: https://github.com/spkelle2/diet
-  license: GNU GENERAL PUBLIC LICENSE Version 3
-  license family: GPL-3.0-or-later
-  summary: Demo on how to develop and build python data science projects for deployment in production environments
+  license: GPL-3.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - seansfkelley
