@@ -23,5 +23,10 @@ def solve_diet():
     return make_json_dict(solution_schema, sln_dat, verbose=True)
 
 
+@app.route('/test', methods=('GET',))
+def test():
+    return "working!"
+
+
 if __name__ == '__main__':
     app.run()
