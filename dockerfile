@@ -22,8 +22,8 @@ RUN cd opt/ && \
     conda activate diet && \
     pip install -e .
 
-# set up nginx
-RUN cp /opt/diet/app/sites-available/app /etc/nginx/sites-available/app && \
+## set up nginx
+RUN cp /opt/diet/app/sites-available/app /etc/nginx/sites-available && \
     ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled
 
 # run diet app with gunicorn as the server
