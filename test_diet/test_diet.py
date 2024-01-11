@@ -1,3 +1,4 @@
+import os
 import unittest
 
 from diet.diet import Diet
@@ -8,8 +9,13 @@ class TestDiet(unittest.TestCase):
 
     def setUp(self) -> None:
         # keep a copy of the input data handy for each test
-        self.dirty_dat = input_schema.csv.create_tic_dat("diet_dirty_sample_data")
-        self.dat = input_schema.csv.create_tic_dat("diet_sample_data")
+        cwd = os.path.dirname(__file__)
+        self.dirty_dat = input_schema.csv.create_tic_dat(
+            os.path.join(cwd, "diet_dirty_sample_data")
+        )
+        self.dat = input_schema.csv.create_tic_dat(
+            os.path.join(cwd, "diet_sample_data")
+        )
 
     def test_init(self):
         # check that init has model and variables if no errors
@@ -60,6 +66,14 @@ class TestDiet(unittest.TestCase):
         for table in solution_schema.all_tables:
             if table != "errors":
                 self.assertFalse(getattr(sln, table))
+
+    def test_static_solve(self):
+        # check static solve works
+        sln = Diet.static_solve(self.dat)
+        self.assertAlmostEqual(sln.parameters["Total Cost"]["Value"], 11.829, places=2)
+        self.assertAlmostEqual(sln.buy_food["hamburger"]["Quantity"], 0.604, places=2)
+        self.assertAlmostEqual(sln.buy_food["milk"]["Quantity"], 6.970, places=2)
+        self.assertAlmostEqual(sln.buy_food["ice cream"]["Quantity"], 2.591, places=2)
 
 
 if __name__ == '__main__':

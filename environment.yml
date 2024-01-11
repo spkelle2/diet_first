@@ -1,0 +1,17 @@
+name: diet
+channels:
+  - conda-forge
+  - defaults
+  - gurobi
+  - spkelle2
+dependencies:
+  - anaconda-client
+  - conda-build
+  - coverage
+  - flask
+  - grayskull
+  - gunicorn
+  - gurobi=10
+  - jupyter
+  - python
+  - ticdat
