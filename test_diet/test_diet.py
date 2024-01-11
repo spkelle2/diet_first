@@ -67,6 +67,14 @@ class TestDiet(unittest.TestCase):
             if table != "errors":
                 self.assertFalse(getattr(sln, table))
 
+    def test_static_solve(self):
+        # check static solve works
+        sln = Diet.static_solve(self.dat)
+        self.assertAlmostEqual(sln.parameters["Total Cost"]["Value"], 11.829, places=2)
+        self.assertAlmostEqual(sln.buy_food["hamburger"]["Quantity"], 0.604, places=2)
+        self.assertAlmostEqual(sln.buy_food["milk"]["Quantity"], 6.970, places=2)
+        self.assertAlmostEqual(sln.buy_food["ice cream"]["Quantity"], 2.591, places=2)
+
 
 if __name__ == '__main__':
     unittest.main()
